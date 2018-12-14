@@ -7,8 +7,17 @@ $(function() {
     window.template = function(id) {
         return _.template($('#' + id).html());
     };
-    App.Models.Task = Backbone.Model.extend({});
+    App.Models.Task = Backbone.Model.extend({
+        validate: function(attrs) {
+            if (! $.trim(attrs.title)) {
+                return 'Имя задачи должно быть валидным!';
+            }
+        }
+    });
     App.Views.Task = Backbone.View.extend({
+        initialize: function() {
+            this.model.on('change', this.render, this)
+        },
         tagnName: 'li',
         template: template('taskTemplate'),
         render: function() {
