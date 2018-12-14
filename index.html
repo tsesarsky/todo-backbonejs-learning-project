@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BackboneJS app</title>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    <h1>Список задач</h1>
+    <div class="tasks"></div>
+    
+    <script type="text/template" id="taskTemplate">
+        <span><%= title %></span>
+        <button class="edit">Редактировать</button>
+        <button class="delete">Удалить</button>
+    </script>
+    
+    <script src="js/liberty/underscore-min.js"></script>
+    <script src="js/liberty/jquery-3.3.1.min.js"></script>
+    <script src="js/liberty/backbone-min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
