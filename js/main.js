@@ -16,7 +16,8 @@ $(function() {
     });
     App.Views.Task = Backbone.View.extend({
         initialize: function() {
-            this.model.on('change', this.render, this)
+            this.model.on('change', this.render, this);
+            this.model.on('destroy', this.remove, this);
         },
         tagnName: 'li',
         template: template('taskTemplate'),
@@ -25,12 +26,19 @@ $(function() {
             this.$el.html(template);
             return this;
         },
+        remove: function() {
+            this.$el.remove();
+        },
         events: {
-            'click .edit': 'editTask'
+            'click .edit': 'editTask',
+            'click .delete': 'destroy'
         },
         editTask: function() {
             var newTaskTitle = prompt('как назовем задачу?', this.model.get('title'));
             this.model.set('title', newTaskTitle);
+        },
+        destroy: function() {
+            this.model.destroy();
         }
     });
     App.Collections.Task = Backbone.Collection.extend({
