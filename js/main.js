@@ -16,7 +16,13 @@ $(function() {
             this.$el.html(template);
             return this;
         },
-        event: {}
+        events: {
+            'click .edit': 'editTask'
+        },
+        editTask: function() {
+            var newTaskTitle = prompt('как назовем задачу?', this.model.get('title'));
+            this.model.set('title', newTaskTitle);
+        }
     });
     App.Collections.Task = Backbone.Collection.extend({
         model: App.Models.Task
